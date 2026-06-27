@@ -48,9 +48,11 @@ as a **frozen contract** — renaming requires updating the repo too. Invocation
 | `cohort-flow` | diagrams | `flowchart` (bruigtp) |
 | `eda` / `ida` | (IDA guideline) | `summarytools` |
 | `onboard-data` | data-onboarding | `rio`, `here`, `summarytools` |
-| `method-audit` | (verification-effort) | panel of subagents (see §5) |
-| `flowchart-sketch` | diagrams | text/line sketch first (no numbers) |
+| `method-audit` | verification-effort | panel of subagents (see §5) |
 | `process-diagram` | diagrams | mermaid (ISO 5807 nomenclature) |
+
+> `cohort-flow` and `process-diagram` both **begin with the sketch-first approval gate** (plain-text
+> mock, no numbers) from the `diagrams` policy — it is a step inside them, not a separate skill.
 
 **Opt-in skills (only when the project needs them — never forced):**
 `dag-causal` (`dagitty`/`ggdag`), `survey-design` (`survey`/`srvyr`), `prediction-validation`
