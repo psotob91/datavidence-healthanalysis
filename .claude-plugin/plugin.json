@@ -1,0 +1,20 @@
+{
+  "name": "datavidence-healthdata",
+  "version": "0.0.1",
+  "description": "Domain plugin for reproducible biostatistics / health-data analysis with R: domain skills (numeric-check, data-contract, table1, cohort-flow, validate-assumptions, onboard-data, method-audit, and more), fail-open governance hooks (data_leak_guard, notation-check, provenance-stamp) and reviewer subagents (methodologist, statistician, reporting-reviewer). Invoked by datavidence-template-project policies; orthogonal to psotobverse-utils (generic workflow). SKELETON — under construction.",
+  "author": {
+    "name": "Percy Soto-Becerra",
+    "url": "https://github.com/psotob91"
+  },
+  "homepage": "https://github.com/psotob91/datavidence-healthdata",
+  "license": "MIT",
+  "keywords": [
+    "biostatistics",
+    "health-data",
+    "epidemiology",
+    "reproducibility",
+    "claude-code",
+    "r",
+    "datavidence"
+  ]
+}
