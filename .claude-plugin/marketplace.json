@@ -1,5 +1,5 @@
 {
-  "name": "datavidence-healthdata",
+  "name": "datavidence-healthanalysis",
   "owner": {
     "name": "Percy Soto-Becerra",
     "url": "https://github.com/psotob91"
@@ -7,7 +7,7 @@
   "description": "Domain plugin for biostatistics / health-data analysis (skills, governance hooks, reviewer subagents). Companion to datavidence-template-project.",
   "plugins": [
     {
-      "name": "datavidence-healthdata",
+      "name": "datavidence-healthanalysis",
       "source": "./",
       "description": "Biostat / health-data domain skills, hooks and subagents. SKELETON — under construction."
     }

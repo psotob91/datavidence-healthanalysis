@@ -1,18 +1,19 @@
 ---
-name: skill-name-here
+name: skill-name-here   # lowercase letters / numbers / hyphens, <= 64 chars, no reserved words
 description: >-
-  One paragraph in natural language that makes this skill AUTO-INVOKE via progressive
-  disclosure. Include the phrases a user would actually say ("build a Table 1", "check
-  this number", "draw the participant flow"). Keep triggers DISJOINT from other skills
-  to avoid ambiguous invocation. State the boundary explicitly: "for X use this; for the
-  generic workflow use psotobverse-utils; for Y use <other-skill>." Narrowest applicable
-  skill wins.
+  THIRD PERSON — what it does + when to use it (<= 1024 chars). Include the phrases a user would
+  actually say so the skill AUTO-INVOKES. Example: "Builds a publication-ready Table 1
+  (descriptive or comparative) with gtsummary, honoring variable labels and the reporting policy;
+  use when the user asks for a baseline / participant-characteristics table." Do NOT write in
+  second person ("You can use this…") — that breaks Skill discovery. Keep triggers DISJOINT from
+  sibling skills; the narrowest applicable skill wins (state the boundary here).
 ---
 
-# /datavidence-healthdata:skill-name-here
+# /datavidence-healthanalysis:skill-name-here
 
 > Reference template. Copy this folder to `skills/<name>/SKILL.md` and fill it in.
-> Body should stay under ~250 lines (progressive disclosure — push detail to referenced files).
+> Body ≤ 500 lines (aim ≤ 250): state *what* to do, not why — the loaded body is a recurring
+> token cost. Push detail into referenced files (progressive disclosure).
 
 ## When to use / when NOT to use
 - Use it when: …

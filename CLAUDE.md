@@ -1,6 +1,6 @@
-# CLAUDE.md — datavidence-healthdata (plugin dev guidance)
+# CLAUDE.md — datavidence-healthanalysis (plugin dev guidance)
 
-You are working inside the **datavidence-healthdata** plugin: the health-data / biostatistics
+You are working inside the **datavidence-healthanalysis** plugin: the health-data / biostatistics
 **domain** layer for the datavidence ecosystem.
 
 ## Read first

@@ -1,6 +1,6 @@
-# datavidence-healthdata — Development Guide (single handoff spec)
+# datavidence-healthanalysis — Development Guide (single handoff spec)
 
-> **Purpose.** This is the complete, self-contained brief for building the `datavidence-healthdata`
+> **Purpose.** This is the complete, self-contained brief for building the `datavidence-healthanalysis`
 > Claude Code plugin. Hand this file's path to a fresh Claude Code session (plus any ChatGPT-prepared
 > material) and it has everything needed to build the skills, hooks, and subagents correctly and to
 > couple cleanly with the `datavidence-template-project` repo.
@@ -34,7 +34,7 @@ Three layers, never mixed:
 
 The template repo's `knowledge-map` and policies route to this plugin **by name**. Treat these names
 as a **frozen contract** — renaming requires updating the repo too. Invocation is namespaced:
-`/datavidence-healthdata:<skill>`.
+`/datavidence-healthanalysis:<skill>`.
 
 **Skills (build these):**
 | Skill | Pairs with repo policy | Backing R package(s) |
@@ -42,7 +42,7 @@ as a **frozen contract** — renaming requires updating the repo too. Invocation
 | `numeric-check` | numeric-computation | (R code; WolframAlpha MCP for symbolic) |
 | `data-contract` | data-integrity | `pointblank` |
 | `missingness-report` | missingness | `mice`, `naniar` |
-| `validate-assumptions` | (assumptions guideline) | `performance`, `car`, `survival::cox.zph` |
+| `validate-assumptions` | model-assumptions | `performance`, `car`, `DHARMa`, `statmod::qresid`, `survival::cox.zph`; Bayesian: `bayesplot`/`loo` (MCMC) + INLA PIT/CPO |
 | `big-data-triage` | long-compute | `data.table`, `duckdb`, `arrow` |
 | `table1` | reporting | `gtsummary` |
 | `cohort-flow` | diagrams | `flowchart` (bruigtp) |
@@ -66,10 +66,14 @@ from `psotobverse-utils`).
 ## 3. Skill conventions (progressive disclosure)
 
 - One folder per skill: `skills/<name>/SKILL.md` (see `skills/SKILL_TEMPLATE.md`).
-- Frontmatter `description` = natural-language triggers that make the skill **auto-invoke**. Include
-  phrases users actually say. Keep triggers **disjoint** across skills (avoid ambiguous matches).
-  Conflict rule: **narrowest applicable skill wins** — state the boundary in the description.
-- Body ≤ ~250 lines; push detail into referenced files (progressive disclosure).
+- Frontmatter `name`: lowercase letters/numbers/hyphens, ≤64 chars, no reserved words.
+- Frontmatter `description` (≤1024 chars): **write in THIRD PERSON** — what it does + when to use it
+  ("Builds a Table 1…; use when the user asks for a baseline table"), **never** second person ("You
+  can use…"), which breaks Skill discovery (the description is injected into the system prompt).
+  Include the phrases users actually say so it **auto-invokes**; keep triggers **disjoint** across
+  skills; **narrowest applicable skill wins** — state the boundary.
+- Body ≤ 500 lines (aim ≤250); state *what* to do, not why; push detail into referenced files
+  (progressive disclosure) — the loaded body is a recurring token cost.
 - Each skill: state when-to-use / when-NOT, the procedure, the policy it pairs with, invariants, output.
 - **Never compute math in the model** — delegate to R (via `executor`) or WolframAlpha MCP (§6).
 - Anchor every claim to `file:line` or reproducible output (no invented numbers/citations).
@@ -88,9 +92,15 @@ from `psotobverse-utils`).
   `psotobverse-utils`.
 - Domain hooks to build:
   - `data_leak_guard` — block identifiable datasets/PII from reaching git / `outputs/` / `context/`
-    and from being dumped into the prompt; small-cell awareness.
+    or the prompt unless the user asks; ensure no real ID column is exported (drop/anonymize); for
+    non-open uploads, warn + propose documented perturbation (date shift / geo jitter). No data
+    alteration beyond that (matches the simplified `data-protection` policy).
   - `notation-check` — verify mathematical notation used in methods exists in the repo's `notation.md`.
   - `provenance-stamp` — stamp outputs with commit SHA + data hash + timestamp.
+
+**Bundling MCP tools (`.mcp.json`).** The plugin may ship a plugin-root `.mcp.json` declaring the MCP
+servers it relies on — e.g. `r-btw` (R package docs) and a math engine (WolframAlpha) — so the
+math-by-tool rule (§6) is satisfiable out of the box.
 
 ---
 
@@ -117,7 +127,12 @@ from `psotobverse-utils`).
   - **Light** = 1 cold-read auditor. **Standard** = 3 voters (2/3 majority).
     **Deep** = 5 diverse voters + synthesis, with anti-sycophancy gate (concede only at evidence ≥4/5).
   - Default = light; escalate by stakes (paper numbers, key conclusions, final method-audit).
-- **Do NOT orchestrate** cheap/mechanical tasks (single agent). Panels cost tokens → critical gates only.
+- **Do NOT orchestrate** cheap/mechanical tasks (single agent). Panels cost tokens → critical gates only;
+  3–5 concurrent reviewers is the sweet spot.
+- **Enforce non-negotiables with a `SubagentStop` hook.** Before a reviewer's result is folded back,
+  block on: no secrets/data in the output, no out-of-scope writes, and any asserted number was
+  tool-computed (not mental). (Anthropic decision rule: **Skill teaches the how · Hook enforces the
+  rule · Subagent isolates the work.**)
 
 ---
 
@@ -133,6 +148,7 @@ from `psotobverse-utils`).
 
 ## 7. Validation & release
 
+- **`claude plugin validate .`** before every release — the marketplace review runs the same check.
 - **Test everything installed together** (`psotobverse-utils` + this + `posit-dev/skills` +
   `arthurgailes/r-package-skills`): no ambiguous triggers, no conflicting hooks.
 - Validate skills `r-package-skills`-style: baseline without the skill → write the minimal SKILL.md →

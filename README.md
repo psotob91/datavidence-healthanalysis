@@ -1,4 +1,4 @@
-# datavidence-healthdata
+# datavidence-healthanalysis
 
 A **domain plugin** (Claude Code) for reproducible **biostatistics / health-data analysis with R**.
 It provides the **skills, governance hooks, and reviewer subagents** that the
