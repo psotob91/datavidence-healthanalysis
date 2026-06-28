@@ -1,0 +1,11 @@
+# gitleaks configuration (datavidence-healthanalysis) — extends the default rule set.
+title = "gitleaks config (datavidence-healthanalysis)"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Plugin-level allowlist"
+paths = [
+  '''\.env\.example$''',
+]

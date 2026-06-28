@@ -1,0 +1,12 @@
+{
+  "$comment": "Opt-in: presence activates the INSTALLED psotobverse-utils meta-learner hooks WHEN a session is rooted in this repo. Absent elsewhere => no-op. Captures plugin-authoring + health-methodology lessons to learning/; routes durable convention signals to STANDARDS_WATCH.",
+  "enabled": true,
+  "label": "datavidence-healthanalysis",
+  "radar": "learning/STANDARDS_WATCH.md",
+  "consensus_patterns": [
+    "phenotype", "code list", "ICD", "SNOMED", "RxNorm", "OMOP", "RECORD", "STROBE",
+    "EQUATOR", "immortal.?time", "denominator", "washout", "PPV", "validation",
+    "guideline", "consensus", "best practice", "deprecat", "plugin", "hook", "skill",
+    "fail.?open", "orthogonal", "Claude Code", "Cowork"
+  ]
+}
