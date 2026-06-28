@@ -1,13 +1,16 @@
 # Spec artifact format (shared)
 
 > Read by domain skills that emit a sizeable methodological spec (phenotype-gate, design-indicator,
-> frame-study, scaffold-reporting, ...). NOT a skill. Defines ONE output convention so a large spec
+> map-clinical-codes, frame-study, scaffold-reporting, ...). NOT a skill. Defines ONE output convention so a large spec
 > stays navigable for humans AND useful as coding input. The render scaffold lives in the child, not here.
 
 ## When to split
 Measure the draft spec against the child doc-hygiene limits (reference 300 / doc 400 lines).
 - Small (<= ~300 lines): keep ONE file `<spec-dir>/<name>-spec.md` and (R stack) an `index.qmd` that includes it.
 - Large (> limit): split into the indexed directory below. Never truncate -- split.
+- **Simple artifacts** (e.g. a code-set manifest, a short report) need not use `<spec-dir>/` at all -- a single
+  `metadata/<name>-manifest.md` (+ optional small render) is the artifact; the provenance + PENDING-register +
+  optional themed-render principles still apply.
 
 ## Canonical layout (large spec)
 ```
