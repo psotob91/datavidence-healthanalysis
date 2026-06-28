@@ -1,0 +1,48 @@
+# Validate the plugin skeleton: manifests parse, any hooks compile + fail open, any
+# skills/commands carry frontmatter. Tolerant of the current empty scaffold (v0.0.1).
+name: validate-plugin
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Manifests parse as JSON
+        run: |
+          python -c "import json; json.load(open('.claude-plugin/plugin.json'))"
+          python -c "import json; json.load(open('.claude-plugin/marketplace.json'))"
+          [ -f hooks/hooks.json ] && python -c "import json; json.load(open('hooks/hooks.json'))" || echo "no hooks.json yet (skeleton)"
+
+      - name: Hook scripts compile (if any)
+        run: |
+          shopt -s nullglob
+          py=(hooks/*.py)
+          if [ ${#py[@]} -gt 0 ]; then python -m py_compile "${py[@]}"; else echo "no hook scripts yet"; fi
+
+      - name: Hooks fail open on empty stdin (if any)
+        run: |
+          shopt -s nullglob
+          for h in hooks/*.py; do
+            case "$(basename "$h")" in meta_util.py|routing_util.py) continue ;; esac
+            echo "" | python "$h" || { echo "FAIL-OPEN VIOLATION: $h"; exit 1; }
+          done
+
+      - name: Skills/commands carry frontmatter (ignore *_TEMPLATE.md)
+        run: |
+          fail=0
+          shopt -s nullglob
+          for f in commands/*.md skills/*/SKILL.md; do
+            case "$(basename "$f")" in *_TEMPLATE.md) continue ;; esac
+            head -1 "$f" | grep -q '^---$' || { echo "Missing frontmatter: $f"; fail=1; }
+          done
+          exit $fail

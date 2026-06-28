@@ -18,3 +18,11 @@ __pycache__/
 # Local scratch
 tmp/
 *.log
+
+# large raw source material (Gemini .mhtml exports + prior drafts) — distilled into the
+# template factory's docs/research + docs/health; kept local only, never committed
+/temporal-expansion-ideas/
+
+# meta-learner transient (durable learning/*.md + learning/sessions/ ARE committed)
+/.claude/state/
+/learning/queue/

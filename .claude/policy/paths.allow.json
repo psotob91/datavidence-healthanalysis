@@ -1,0 +1,24 @@
+{
+  "$comment": "Self-guard for authoring THIS plugin repo. Consumed by the INSTALLED psotobverse-utils nothing_loose PreToolUse hook (user-scoped) via $CLAUDE_PROJECT_DIR when a session is rooted here. FAILS OPEN if absent. datavidence-healthanalysis ships no nothing_loose of its own — it reuses the generic guard (orthogonality). allow_write = globs where the agent may Write/Edit. Add a path here if the repo grows a new top-level location.",
+  "allow_write": [
+    ".claude/**",
+    ".claude-plugin/**",
+    ".github/**",
+    "skills/**",
+    "hooks/**",
+    "commands/**",
+    "agents/**",
+    "docs/**",
+    "learning/**",
+    "temporal-expansion-ideas/**",
+    "CHANGELOG.md",
+    "README.md",
+    "CLAUDE.md",
+    "LICENSE",
+    ".gitignore",
+    ".gitattributes",
+    ".editorconfig",
+    ".gitleaks.toml",
+    ".mcp.json"
+  ]
+}
