@@ -32,6 +32,18 @@ Three layers, never mixed:
 
 ## 2. The frozen interface (contract with the repo)
 
+> **CANONICAL PORTFOLIO (v0.1.0, 2026-06-29).** The authoritative, as-built list of the 20 skills +
+> 2 hooks + 3 subagents is the blueprint
+> (`datavidence-template-project/docs/plugins/datavidence-healthanalysis-blueprint.md`) and
+> `.claude-plugin/plugin.json`. Canonical names: phenotype-gate, map-clinical-codes, design-indicator,
+> frame-study, run-ida, validate-assumptions, assess-missingness, numeric-check, onboard-data,
+> validate-data-contract, scaffold-reporting, specify-regression, specify-sensitivity-plan,
+> review-outliers, big-data-triage, draft-diagram, method-audit, dag-causal, prediction-validation,
+> survey-design, spatial; hooks guard_data_export + notation_check. The table below is the original
+> pre-vote planning sketch — superseded names (data-contract->validate-data-contract,
+> missingness-report->assess-missingness, eda->run-ida, table1/cohort-flow->scaffold-reporting,
+> process-diagram->draft-diagram, data_leak_guard->guard_data_export) are kept only for history.
+
 The template repo's `knowledge-map` and policies route to this plugin **by name**. Treat these names
 as a **frozen contract** — renaming requires updating the repo too. Invocation is namespaced:
 `/datavidence-healthanalysis:<skill>`.
