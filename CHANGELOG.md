@@ -16,7 +16,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning: [S
 ## [0.1.0] - 2026-06-29
 
 ### Added
-- **20 thin-verb skills** (markdown-only) operationalizing the template policies, built block by block
+- **21 thin-verb skills** (markdown-only) operationalizing the template policies, built block by block
   and behavior-evaluated (with-skill vs baseline, structural assertions, viewer):
   - Health: `phenotype-gate` (exemplar; comprehension gate + variable catalog + implementable
     pseudocode), `map-clinical-codes`, `design-indicator`, `scaffold-reporting`.
