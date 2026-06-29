@@ -7,7 +7,8 @@ description: >-
   proposes remedies for each family (OLS, GLM/quasi, Cox, mixed, Bayesian MCMC,
   Bayesian INLA). Use when the user asks to check model assumptions, run residual
   diagnostics, run model diagnostics, check proportional hazards, check whether
-  a model is valid, check linearity, check normality, or check homoscedasticity.
+  a model is valid, check linearity, check normality, check homoscedasticity, or inspect post-fit influence
+  diagnostics (Cook's distance, leverage, DFBETA, influential observations).
   Operationalizes analysis/model-assumptions.md. NOT for pre-fit data screening
   (use run-ida) and NOT for model specification choices (use specify-regression).
 ---

@@ -4,8 +4,8 @@ description: >-
   Frames the analysis plan UP FRONT -- pre-specifies the estimand, classifies the
   analytic task, selects the EQUATOR reporting guideline, and emits a SAP skeleton
   -- before any results are examined. Use when the user asks to write an analysis
-  plan, draft a SAP, write a statistical analysis plan, pre-specify the estimand,
-  define the outcome before results, choose a reporting guideline, or turn a study
+  plan, draft a SAP, write a statistical analysis plan, pre-specify the estimand, frame a target trial or target-trial emulation (TARGET statement /
+  ICH E9(R1) estimand), define the outcome before results, choose a reporting guideline, or turn a study
   protocol into an analysis plan. Operationalizes analysis/pre-specification.md,
   analysis/statistical-reporting.md, and health/reporting-standards.md. NOT for
   running the analysis (that follows sign-off); NOT for model diagnostics

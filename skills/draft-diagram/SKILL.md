@@ -5,8 +5,7 @@ description: >-
   method diagrams, ER diagrams, and timeline/Gantt charts using Mermaid with ISO 5807
   nomenclature and colorblind-safe encoding. Use when the user asks for a process diagram,
   method diagram, flowchart of the pipeline, mermaid diagram, ER diagram, data-flow diagram,
-  entity-relationship diagram, analysis pipeline diagram, data model diagram, or Gantt chart
-  for a study timeline or project milestones.
+  entity-relationship diagram, analysis pipeline diagram, data model diagram, or a Gantt chart for a project schedule or enrollment-milestone timeline.
   Operationalizes analysis/diagrams.md (sketch-first approval gate, ISO 5807 shapes,
   Okabe-Ito colors, Crow's Foot ER, ISO 8601 dates).
   NOT for participant or cohort flow diagrams (CONSORT/STROBE/PRISMA) — use scaffold-reporting.

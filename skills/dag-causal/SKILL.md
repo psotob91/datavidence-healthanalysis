@@ -8,8 +8,8 @@ description: >-
   M-bias, or assess causal structure before analysis. Operates only on the STRUCTURAL step —
   NOT the regression fit (use specify-regression) and NOT the estimand / SAP framing (use
   frame-study, which this skill complements as the target-trial structural step). Opt-in: only
-  present when the causal module is enabled. Operationalizes the causal module doc and the
-  target-trial / TARGET-statement workflow.
+  present when the causal module is enabled. Operationalizes the causal module doc (the structural DAG step of the target-trial /
+  TARGET-statement workflow; estimand and target-trial FRAMING are frame-study, not this skill).
 ---
 
 # /datavidence-healthanalysis:dag-causal

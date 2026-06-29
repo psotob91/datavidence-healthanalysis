@@ -7,7 +7,8 @@ description: >-
   data granularity and time-varying states, catalogs the input/derived/uncertain variables, writes
   language-agnostic implementable pseudocode, and withholds runnable code until explicit human sign-off.
   Use when the user asks to define cases, build a computable phenotype, identify patients by an algorithm,
-  classify a condition from codes/labs/meds/time, or operationalize a published case definition.
+  classify a condition from codes/labs/meds/time, draw its decision or temporal (ASCII) timeline,
+  or operationalize a published case definition.
   Operationalizes health/phenotyping.md. NOT for assembling a code set (use map-clinical-codes) nor for
   denominators, person-time, or incidence/prevalence (use design-indicator).
 ---
