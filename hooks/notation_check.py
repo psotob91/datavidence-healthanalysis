@@ -15,7 +15,7 @@ import json, os, re, sys
 from pathlib import Path
 
 # LaTeX math tokens: inline $...$ OR a backslash-command \name
-_MATH_TOKEN_RE = re.compile(r'\$[^$\n]{1,200}\$|\[a-zA-Z]+')
+_MATH_TOKEN_RE = re.compile(r'\$[^$\n]{1,200}\$|\\[a-zA-Z]+')
 
 # A methods/supplement/analysis .qmd path (slash OR backslash separators)
 _METHODS_RE = re.compile(r'(methods|supplement.*\.qmd$|analysis[\/][^\/]+\.qmd$)', re.IGNORECASE)

@@ -18,6 +18,15 @@ _EGRESS_RE = re.compile(
     r'|sendmail|mutt|mail\s+-s|rclone\s+copy|scp\s+|sftp\s+'
     r'|git\s+add\s+\S*(raw|data)[\/])', re.IGNORECASE)
 _DATA_EXT = (".csv", ".xlsx", ".tsv", ".parquet", ".dta", ".sav", ".json")
+_DATA_PATH_RE = re.compile(r'(raw|data)/', re.IGNORECASE)
+
+
+def _refs_data(cmd: str) -> bool:
+    """True if a Bash command references a data file (by extension) or a raw/ | data/
+    path segment -- so the egress guard fires on file exports, not only when a PII
+    field NAME literal happens to appear in the command string."""
+    low = cmd.lower()
+    return bool(_DATA_PATH_RE.search(low)) or any(ext in low for ext in _DATA_EXT)
 
 
 def _ask(reason: str) -> None:
@@ -66,10 +75,12 @@ def main() -> None:
                          "the data is de-identified/authorised." % fp)
         elif tool == "Bash":
             cmd = ti.get("command", "") or ""
-            if _PII_RE.search(cmd) and _EGRESS_RE.search(cmd):
-                _ask("[guard_data_export] This command references a PII field (%r) together with a "
-                     "data-egress operation. Confirm the data is de-identified before sending it out."
-                     % _PII_RE.search(cmd).group())
+            if _EGRESS_RE.search(cmd) and (_PII_RE.search(cmd) or _refs_data(cmd)):
+                m = _PII_RE.search(cmd)
+                what = ("references a PII field (%r)" % m.group()) if m else "moves a data file"
+                _ask("[guard_data_export] This command %s together with a data-egress "
+                     "operation. Confirm the data is de-identified/authorised before sending it out."
+                     % what)
     except Exception:
         pass
 
