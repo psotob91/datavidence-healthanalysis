@@ -3,15 +3,13 @@ name: design-indicator
 description: >-
   Designs or reviews an incidence or prevalence indicator built from routinely-collected data
   (EHR, claims, registry): defines the denominator BEFORE the numerator, declares the population
-  frame (resident / registered / enrolled / observed person-time / contact), computes person-time
-  by interval overlap, types every window (lookback, washout, clean, confirmation, outcome, risk,
-  grace-gap, eligibility), fixes index date, builds episodes, declares a recurrence model, states
-  the prevalence type (point / period / contact) or incidence form (cumulative incidence vs rate),
+  frame, computes person-time by interval overlap, types every window (lookback, washout, clean,
+  confirmation, outcome, risk, grace-gap), fixes the index date, builds episodes, declares a
+  recurrence model, states the prevalence type or incidence form (cumulative incidence vs rate),
   and reports per RECORD / RECORD-PE. Use when the user asks about incidence, prevalence,
-  denominator, person-time, episode, the washout/lookback window of an incidence or prevalence measure, rate, or surveillance indicator.
-  Scope: design/review a denominator -> numerator -> window -> episode indicator for
-  routinely-collected data. NOT for assigning the case label itself (that is phenotype-gate);
-  NOT for assembling the code set (that is map-clinical-codes).
+  denominator, person-time, episode, the washout/lookback window of an incidence or prevalence
+  measure, rate, or surveillance indicator. NOT for assigning the case label itself (that is
+  phenotype-gate); NOT for assembling the code set (that is map-clinical-codes).
 ---
 
 # /datavidence-healthanalysis:design-indicator

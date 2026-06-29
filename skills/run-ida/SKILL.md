@@ -1,19 +1,17 @@
 ---
 name: run-ida
 description: >-
-  Runs the STRATOS-structured Initial Data Analysis (IDA) before modeling: screens the data across
-  five domains (metadata/data-cleaning, missingness, univariate distributions, multivariate
-  associations, data-method-of-analysis consistency) without peaking at the explanatory-outcome
-  association, flags issues as PENDING_LOCAL_DECISION, and emits a chaptered IDA report with
-  graphics first (summarytools, naniar, ggplot2). A LONGITUDINAL MODE activates automatically
-  when repeated-measures data are present: adds a domain-six scan covering participation profile,
-  timing balance, dropout classification, and within-subject correlation (spaghetti/lasagna plots).
-  Findings feed pre-specification; any change to the SAP is logged with justification.
+  Runs the STRATOS-structured Initial Data Analysis (IDA) before modeling: screens the data
+  across five domains (metadata/cleaning, missingness, univariate distributions, multivariate
+  associations, data-vs-analysis-method consistency) WITHOUT peeking at the explanatory-outcome
+  association, flags issues as PENDING_LOCAL_DECISION, and emits a chaptered, graphics-first IDA
+  report (summarytools, naniar, ggplot2). A longitudinal mode adds a sixth domain (participation,
+  timing balance, dropout, within-subject correlation) when repeated-measures data are present.
   Use when the user asks for initial data analysis, IDA, EDA, data screening, screen the data
-  before modeling, check the data is fit for purpose, or when the data involve a longitudinal,
-  repeated-measures, or panel structure. Scope: STRATOS structured IDA BEFORE modeling. NOT model
-  diagnostics or post-fit residual checks (use validate-assumptions for those); NOT informal
-  exploratory hunting for findings. Distinct from EDA: IDA checks fitness-for-purpose, not discovery.
+  before modeling, check the data is fit for purpose, or when the data are longitudinal,
+  repeated-measures, or panel. NOT model diagnostics or post-fit residual checks (use
+  validate-assumptions); NOT informal exploratory hunting for findings -- IDA checks
+  fitness-for-purpose, not discovery.
 ---
 
 # /datavidence-healthanalysis:run-ida
