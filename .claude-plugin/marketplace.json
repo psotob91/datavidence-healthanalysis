@@ -9,7 +9,7 @@
     {
       "name": "datavidence-healthanalysis",
       "source": "./",
-      "description": "Biostat / health-data domain skills, hooks and subagents. SKELETON — under construction."
+      "description": "Biostat / health-data domain: 22 thin-verb skills, 5 governance hooks (incl. pre-registration enforcement: sap_lock / attrition_log / variable_catalog_gate), 3 reviewer subagents. v0.2.0."
     }
   ]
 }
