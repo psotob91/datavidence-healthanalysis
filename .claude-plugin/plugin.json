@@ -1,7 +1,7 @@
 {
   "name": "datavidence-healthanalysis",
-  "version": "0.0.1",
-  "description": "Domain plugin for reproducible biostatistics / health-data analysis with R: domain skills (numeric-check, data-contract, table1, cohort-flow, validate-assumptions, onboard-data, method-audit, and more), fail-open governance hooks (data_leak_guard, notation-check, provenance-stamp) and reviewer subagents (methodologist, statistician, reporting-reviewer). Invoked by datavidence-template-project policies; orthogonal to psotobverse-utils (generic workflow). SKELETON — under construction.",
+  "version": "0.1.0",
+  "description": "Domain plugin for reproducible biostatistics / health-data analysis with R. 21 thin-verb skills across health (phenotype-gate, map-clinical-codes, design-indicator, scaffold-reporting), the STRATOS analysis core (frame-study, run-ida, validate-assumptions, assess-missingness, numeric-check, specify-regression, specify-sensitivity-plan, review-outliers, big-data-triage, draft-diagram), data plumbing (onboard-data, validate-data-contract), a method-audit panel, and opt-in modules (dag-causal, prediction-validation, survey-design, spatial). Fail-open governance hooks (guard_data_export, notation_check) and reviewer subagents (methodologist, statistician, reporting-reviewer). Operationalizes datavidence-template-project policies; orthogonal to psotobverse-utils (generic workflow).",
   "author": {
     "name": "Percy Soto-Becerra",
     "url": "https://github.com/psotob91"

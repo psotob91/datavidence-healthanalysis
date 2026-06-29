@@ -5,6 +5,12 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning: [S
 
 ## [Unreleased]
 
+### Added
+- **Block-4 behavior-eval completed** for the remaining 5 skills (`dag-causal`,
+  `specify-sensitivity-plan`, `review-outliers`, `big-data-triage`, `draft-diagram`):
+  with-skill 100% vs baseline mean 36% (mean improvement +0.64). Identical task per arm,
+  rubric-scored, generator != auditor. Record: `docs/evals/2026-06-29-block4-behavior-eval.md`.
+
 ### Changed
 - Renamed plugin `datavidence-healthdata` → **`datavidence-healthanalysis`** (name, marketplace,
   homepage, docs, templates).
@@ -12,6 +18,35 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning: [S
   third-person skill descriptions (`name` ≤64 chars; body ≤500), `.mcp.json` for bundling
   `r-btw`/WolframAlpha, a `SubagentStop` hook to enforce non-negotiables, explicit
   `claude plugin validate`, and `data_leak_guard` aligned to the simplified `data-protection` policy.
+
+- **Skill descriptions disambiguated** (trigger-collision fixes from a 2-router routing audit,
+  description-only): `dag-causal` (target-trial framing -> frame-study), `frame-study` (added
+  target-trial / estimand triggers), `validate-assumptions` (added post-fit influence triggers:
+  Cook's distance / DFBETA / leverage), `draft-diagram` (narrowed the timeline trigger to
+  project/enrollment), `phenotype-gate` (added decision/temporal ASCII-timeline trigger).
+  All 15 boundary prompts route CLEAN_WIN.
+
+## [0.1.0] - 2026-06-29
+
+### Added
+- **21 thin-verb skills** (markdown-only) operationalizing the template policies, built block by block
+  and behavior-evaluated (with-skill vs baseline, structural assertions, viewer):
+  - Health: `phenotype-gate` (exemplar; comprehension gate + variable catalog + implementable
+    pseudocode), `map-clinical-codes`, `design-indicator`, `scaffold-reporting`.
+  - STRATOS core: `frame-study`, `run-ida`, `validate-assumptions`, `assess-missingness`,
+    `numeric-check`, `specify-regression`, `specify-sensitivity-plan`, `review-outliers`,
+    `big-data-triage`, `draft-diagram`.
+  - Data: `onboard-data`, `validate-data-contract`. Panel: `method-audit`.
+  - Opt-in modules: `dag-causal`, `prediction-validation`, `survey-design`, `spatial`.
+- **Shared core** `skills/_shared/{health-principles,spec-artifact}.md` (math-by-tool, claim->evidence,
+  PENDING_LOCAL_DECISION; the split-indexed + academic/executive Quarto-rendered spec-artifact format).
+- **Hooks** (fail-open, stdlib, `hooks/hooks.json`): `guard_data_export.py` (PreToolUse egress guard,
+  ask-not-deny, opt-in to health children), `notation_check.py` (PostToolUse). Tested via piped stdin.
+- **Reviewer subagents**: `methodologist`, `statistician`, `reporting-reviewer` (sonnet, read-only).
+
+### Changed
+- `plugin.json` description + version (0.0.1 -> 0.1.0); no `hooks` key (auto-discovered).
+- Eval results: Block 1 +0.51, Block 2 +0.63, Block 3 +0.61, Block 4 +0.62 (with-skill vs baseline).
 
 ## [0.0.1] - 2026-06-27
 
