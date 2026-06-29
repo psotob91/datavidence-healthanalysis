@@ -5,7 +5,20 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning: [S
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-06-29
+
 ### Added
+- **Block 7 -- pre-registration enforcement layer** (the tsukuba "mandatory pre-registration"
+  paradigm). New **`preregister`** skill: consolidates the upstream design artifacts (estimand/SAP,
+  sensitivity plan, phenotype/exposure definitions, variable catalog, population frame) into ONE
+  lockable `analysis/prereg/pre-registration.yaml` + `population_cascade.yaml`, locks on explicit
+  human sign-off via `validation/logs/sap_lock.json` (content-hashed), and records post-lock changes
+  in a deviations log -- never a silent edit. Plus 3 fail-open, opt-in, stdin-tested hooks:
+  `sap_lock` (PreToolUse -- asks before analysis/model writes when the pre-registration is not
+  locked), `attrition_log` (PostToolUse -- flags filtering scripts missing `log_attrition()`),
+  `variable_catalog_gate` (PreToolUse -- asks on scripts referencing `status: unknown` variables in
+  the variable spec catalog). Cold-read audited (generator != auditor; P1/P2 fixes applied) and
+  behavior-evaluated (+0.65: 100% vs 35% baseline). Skill count **21 -> 22**.
 - **Block-4 behavior-eval completed** for the remaining 5 skills (`dag-causal`,
   `specify-sensitivity-plan`, `review-outliers`, `big-data-triage`, `draft-diagram`):
   with-skill 100% vs baseline mean 36% (mean improvement +0.64). Identical task per arm,

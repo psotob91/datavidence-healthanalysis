@@ -1,11 +1,27 @@
 {
-  "$comment": "Plugin hook registration. SELF-DISCOVERING bootstrapper — mirrors the psotobverse-utils pattern (see that plugin's hooks/hooks.json for rationale). Resolves the plugin install dir at runtime: (1) CLAUDE_PLUGIN_ROOT if set (terminal CLI), (2) ~/.claude/plugins/installed_plugins.json installPath for this plugin, (3) cache glob fallback. Fails open (sys.exit(0)) if nothing resolves. Do NOT add a 'hooks' key in plugin.json — auto-discovered from this file; duplicating it causes 'Duplicate hooks file detected' and the whole plugin fails to load. No ${...} and no inner double quotes -> portable across bash/cmd/PowerShell.",
+  "$comment": "Plugin hook registration. SELF-DISCOVERING bootstrapper \u2014 mirrors the psotobverse-utils pattern (see that plugin's hooks/hooks.json for rationale). Resolves the plugin install dir at runtime: (1) CLAUDE_PLUGIN_ROOT if set (terminal CLI), (2) ~/.claude/plugins/installed_plugins.json installPath for this plugin, (3) cache glob fallback. Fails open (sys.exit(0)) if nothing resolves. Do NOT add a 'hooks' key in plugin.json \u2014 auto-discovered from this file; duplicating it causes 'Duplicate hooks file detected' and the whole plugin fails to load. No ${...} and no inner double quotes -> portable across bash/cmd/PowerShell.",
   "hooks": {
     "PreToolUse": [
       {
         "matcher": "Write|Edit|MultiEdit|Bash",
         "hooks": [
-          { "type": "command", "command": "python -c \"import os,sys,json,glob,runpy; S='guard_data_export.py'; r=os.environ.get('CLAUDE_PLUGIN_ROOT'); j=os.path.expanduser('~/.claude/plugins/installed_plugins.json'); d=(json.load(open(j)) if (not r and os.path.exists(j)) else {}); r=r or next((sorted(v,key=lambda e:e.get('version',''))[-1].get('installPath') for k,v in d.get('plugins',{}).items() if k.startswith('datavidence-healthanalysis')), None); g=glob.glob(os.path.expanduser('~/.claude/plugins/cache/*/datavidence-healthanalysis/*')); r=r or (sorted(g)[-1] if g else None); p=(os.path.join(r,'hooks',S) if r else None); (runpy.run_path(p, run_name='__main__') if (p and os.path.exists(p)) else sys.exit(0))\"" }
+          {
+            "type": "command",
+            "command": "python -c \"import os,sys,json,glob,runpy; S='guard_data_export.py'; r=os.environ.get('CLAUDE_PLUGIN_ROOT'); j=os.path.expanduser('~/.claude/plugins/installed_plugins.json'); d=(json.load(open(j)) if (not r and os.path.exists(j)) else {}); r=r or next((sorted(v,key=lambda e:e.get('version',''))[-1].get('installPath') for k,v in d.get('plugins',{}).items() if k.startswith('datavidence-healthanalysis')), None); g=glob.glob(os.path.expanduser('~/.claude/plugins/cache/*/datavidence-healthanalysis/*')); r=r or (sorted(g)[-1] if g else None); p=(os.path.join(r,'hooks',S) if r else None); (runpy.run_path(p, run_name='__main__') if (p and os.path.exists(p)) else sys.exit(0))\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python -c \"import os,sys,json,glob,runpy; S='sap_lock.py'; r=os.environ.get('CLAUDE_PLUGIN_ROOT'); j=os.path.expanduser('~/.claude/plugins/installed_plugins.json'); d=(json.load(open(j)) if (not r and os.path.exists(j)) else {}); r=r or next((sorted(v,key=lambda e:e.get('version',''))[-1].get('installPath') for k,v in d.get('plugins',{}).items() if k.startswith('datavidence-healthanalysis')), None); g=glob.glob(os.path.expanduser('~/.claude/plugins/cache/*/datavidence-healthanalysis/*')); r=r or (sorted(g)[-1] if g else None); p=(os.path.join(r,'hooks',S) if r else None); (runpy.run_path(p, run_name='__main__') if (p and os.path.exists(p)) else sys.exit(0))\""
+          },
+          {
+            "type": "command",
+            "command": "python -c \"import os,sys,json,glob,runpy; S='variable_catalog_gate.py'; r=os.environ.get('CLAUDE_PLUGIN_ROOT'); j=os.path.expanduser('~/.claude/plugins/installed_plugins.json'); d=(json.load(open(j)) if (not r and os.path.exists(j)) else {}); r=r or next((sorted(v,key=lambda e:e.get('version',''))[-1].get('installPath') for k,v in d.get('plugins',{}).items() if k.startswith('datavidence-healthanalysis')), None); g=glob.glob(os.path.expanduser('~/.claude/plugins/cache/*/datavidence-healthanalysis/*')); r=r or (sorted(g)[-1] if g else None); p=(os.path.join(r,'hooks',S) if r else None); (runpy.run_path(p, run_name='__main__') if (p and os.path.exists(p)) else sys.exit(0))\""
+          }
         ]
       }
     ],
@@ -13,7 +29,14 @@
       {
         "matcher": "Write|Edit|MultiEdit",
         "hooks": [
-          { "type": "command", "command": "python -c \"import os,sys,json,glob,runpy; S='notation_check.py'; r=os.environ.get('CLAUDE_PLUGIN_ROOT'); j=os.path.expanduser('~/.claude/plugins/installed_plugins.json'); d=(json.load(open(j)) if (not r and os.path.exists(j)) else {}); r=r or next((sorted(v,key=lambda e:e.get('version',''))[-1].get('installPath') for k,v in d.get('plugins',{}).items() if k.startswith('datavidence-healthanalysis')), None); g=glob.glob(os.path.expanduser('~/.claude/plugins/cache/*/datavidence-healthanalysis/*')); r=r or (sorted(g)[-1] if g else None); p=(os.path.join(r,'hooks',S) if r else None); (runpy.run_path(p, run_name='__main__') if (p and os.path.exists(p)) else sys.exit(0))\"" }
+          {
+            "type": "command",
+            "command": "python -c \"import os,sys,json,glob,runpy; S='notation_check.py'; r=os.environ.get('CLAUDE_PLUGIN_ROOT'); j=os.path.expanduser('~/.claude/plugins/installed_plugins.json'); d=(json.load(open(j)) if (not r and os.path.exists(j)) else {}); r=r or next((sorted(v,key=lambda e:e.get('version',''))[-1].get('installPath') for k,v in d.get('plugins',{}).items() if k.startswith('datavidence-healthanalysis')), None); g=glob.glob(os.path.expanduser('~/.claude/plugins/cache/*/datavidence-healthanalysis/*')); r=r or (sorted(g)[-1] if g else None); p=(os.path.join(r,'hooks',S) if r else None); (runpy.run_path(p, run_name='__main__') if (p and os.path.exists(p)) else sys.exit(0))\""
+          },
+          {
+            "type": "command",
+            "command": "python -c \"import os,sys,json,glob,runpy; S='attrition_log.py'; r=os.environ.get('CLAUDE_PLUGIN_ROOT'); j=os.path.expanduser('~/.claude/plugins/installed_plugins.json'); d=(json.load(open(j)) if (not r and os.path.exists(j)) else {}); r=r or next((sorted(v,key=lambda e:e.get('version',''))[-1].get('installPath') for k,v in d.get('plugins',{}).items() if k.startswith('datavidence-healthanalysis')), None); g=glob.glob(os.path.expanduser('~/.claude/plugins/cache/*/datavidence-healthanalysis/*')); r=r or (sorted(g)[-1] if g else None); p=(os.path.join(r,'hooks',S) if r else None); (runpy.run_path(p, run_name='__main__') if (p and os.path.exists(p)) else sys.exit(0))\""
+          }
         ]
       }
     ]
