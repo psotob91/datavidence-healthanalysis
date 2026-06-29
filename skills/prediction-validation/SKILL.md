@@ -1,19 +1,16 @@
 ---
 name: prediction-validation
 description: >-
-  Guides development and/or validation of a clinical prediction model (prognostic or
-  diagnostic) following TRIPOD+AI (2024) and PROBAST+AI (2025): checks sample size via
-  `pmsampsize`, forbids predictor dichotomization, requires internal validation by
-  bootstrap optimism correction, demands BOTH calibration (calibration plot + slope /
-  intercept) AND discrimination (C-statistic / AUC), adds clinical utility via decision
-  curve analysis (`dcurves`), and pre-specifies external / temporal validation. Use when
-  the user mentions: prediction model, risk score, clinical prediction model, prognostic
-  model, diagnostic model, calibration, discrimination, AUC, C-statistic, TRIPOD,
-  TRIPOD+AI, external validation, sample size for a model, predictive performance, or
-  `pmsampsize`. Operationalizes `template/docs/analysis/modules/prediction.md`.
-  NOT for etiologic / causal regression where coefficients are interpreted as effects
-  (use specify-regression / dag-causal instead -- coefficients in a prediction model are
-  not causal estimates).
+  Guides development and/or validation of a clinical prediction model (prognostic or diagnostic)
+  following TRIPOD+AI (2024) and PROBAST+AI (2025): checks sample size via pmsampsize, forbids
+  predictor dichotomization, requires internal validation by bootstrap optimism correction,
+  demands BOTH calibration (plot + slope/intercept) AND discrimination (C-statistic / AUC), adds
+  clinical utility via decision curve analysis (dcurves), and pre-specifies external / temporal
+  validation. Use when the user mentions: prediction model, risk score, clinical prediction model,
+  prognostic or diagnostic model, calibration, discrimination, AUC, C-statistic, TRIPOD, TRIPOD+AI,
+  external validation, sample size for a model, predictive performance, or pmsampsize. NOT for
+  etiologic / causal regression where coefficients are interpreted as effects (use
+  specify-regression / dag-causal) -- prediction-model coefficients are not causal estimates.
 ---
 
 # /datavidence-healthanalysis:prediction-validation
